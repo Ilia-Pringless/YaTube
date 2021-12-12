@@ -132,7 +132,6 @@ class PostsPagesTests(TestCase):
     def test_posts_profile_correct_context(self):
         """Шаблон profile сформирован с правильным контекстом."""
         response = self.authorized_client.get(PROFILE)
-        check_posts_count = response.context.get('posts_sum')
         check_author = response.context.get('author')
         first_object = response.context['page_obj'][0]
         post_text_0 = first_object.text
@@ -145,13 +144,10 @@ class PostsPagesTests(TestCase):
         self.assertEqual(post_image_0, self.post.image)
         # Проверка соответсвия автора
         self.assertEqual(check_author, self.user)
-        # Проверка количества постов на странице
-        self.assertEqual(check_posts_count, 1)
 
     def test_posts_post_detail_correct_context(self):
         """Шаблон post_detail сформирован с правильным контекстом."""
         response = self.authorized_client.get(self.POST_DETAIL)
-        count_post = Post.objects.filter(author=self.user).count()
         self.assertEqual(response.context['get_post'].text, TEST_TEXT)
         self.assertEqual(response.context['get_post'].author, self.user)
         self.assertEqual(response.context['get_post'].group, self.group)
@@ -162,8 +158,6 @@ class PostsPagesTests(TestCase):
         )
         # Проверка соответствия id
         self.assertEqual(response.context['get_post'].id, 9)
-        # Проверка количества постов автора
-        self.assertEqual(response.context['posts_sum'], count_post)
 
     def test_posts_edit_post_correct_context(self):
         """Страница post_edit использует правильный контекст"""

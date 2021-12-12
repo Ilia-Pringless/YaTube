@@ -54,7 +54,6 @@ def group_posts(request, slug):
 def profile(request, username):
     template = 'posts/profile.html'
     author = get_object_or_404(User, username=username)
-    posts_sum = Post.objects.filter(author=author).count()
     # Подключен Paginator
     post_list = Post.objects.filter(author=author)
     paginator = Paginator(post_list, COUNT_POST)
@@ -63,8 +62,8 @@ def profile(request, username):
     following = request.user.is_authenticated and author.following.exists()
     context = {
         'title': 'Профайл пользователя',
+        'post_list': post_list,
         'author': author,
-        'posts_sum': posts_sum,
         'page_obj': page_obj,
         'following': following,
         'user_profile': request.user,
@@ -76,23 +75,23 @@ def post_detail(request, post_id):
     template = 'posts/post_detail.html'
     get_post = Post.objects.get(id=post_id)
     author = get_post.author
+    posts = Post.objects.filter(author=author)
     text = get_post.text
     created = get_post.created
     group = get_post.group
-    comments = Comment.objects.filter(post=get_post)
     form = CommentForm(request.POST or None)
-    posts_sum = Post.objects.filter(author=author).count()
     title = f'Пост: {text[0:29]}'
+    comments = Comment.objects.filter(post=get_post)
     context = {
         'title': title,
         'created': created,
         'author': author,
+        'posts': posts,
         'group': group,
         'get_post': get_post,
-        'posts_sum': posts_sum,
         'text': text,
-        'comments': comments,
         'form': form,
+        'comments': comments,
     }
     return render(request, template, context)
 

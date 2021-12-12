@@ -2,14 +2,8 @@
 {% block title %}Технологии{% endblock %}
 {% block content %}
 <div class="container py-2">
-{% comment %} Колонки с отступом сверху и снизу {% endcomment %}
 <div class="row">
   <h1>Вот что я умею</h1>
-  {% comment %}
-    Боковой блок со списком технологий 
-    Займет всю ширину блока на мобильном
-    и 25% при размерах экрана ≥768px
-  {% endcomment %}
   <aside class="col-12 col-md-3">
     <ul class="list-group list-group-flush">
       <li class="list-group-item">
@@ -22,11 +16,6 @@
         И немного HTML
     </ul>
   </aside>
-  {% comment %}
-    Статья  
-    Займет всю ширину блока на мобильном
-    и 75% при размерах экрана ≥768px
-  {% endcomment %}
   <article class="col-12 col-md-9">
     <p class="text-left"> При работе над внешним видом сайта используются такие дополнительные технологии, как: CSS (Cascading Style Sheets)</p>
     <p class="text-left"> Язык программирования, использованнный в сайтостроении: Python</p>

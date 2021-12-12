@@ -2,17 +2,14 @@ from django.contrib import admin
 
 from yatube.settings import EMPTY_VALUE_DISPLAY
 
-from .models import Group, Post
+from .models import Comment, Follow, Group, Post
 
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    # Перечисляем поля, которые должны отображаться в админке
     list_display = ('pk', 'text', 'created', 'author', 'group')
     list_editable = ('group',)
-    # Добавляем интерфейс для поиска по тексту постов
     search_fields = ('text',)
-    # Добавляем возможность фильтрации по дате
     list_filter = ('created',)
     empty_value_display = EMPTY_VALUE_DISPLAY
 
@@ -21,4 +18,20 @@ class PostAdmin(admin.ModelAdmin):
 class GroupAdmin(admin.ModelAdmin):
     list_display = ('pk', 'title')
     search_fields = ('title',)
+    empty_value_display = EMPTY_VALUE_DISPLAY
+
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('post', 'author', 'text', 'created')
+    search_fields = ('text',)
+    list_filter = ('created',)
+    empty_value_display = EMPTY_VALUE_DISPLAY
+
+
+@admin.register(Follow)
+class FollowAdmin(admin.ModelAdmin):
+    list_display = ('user', 'author')
+    search_fields = ('user',)
+    list_filter = ('author',)
     empty_value_display = EMPTY_VALUE_DISPLAY
