@@ -1,3 +1,21 @@
-# hw05_final
-
-[![CI](https://github.com/yandex-praktikum/hw05_final/actions/workflows/python-app.yml/badge.svg?branch=master)](https://github.com/yandex-praktikum/hw05_final/actions/workflows/python-app.yml)
+# YaTube_project
+## Описание 
+Небольшой проект социальной сети для публикации текстовых записей с изображениям.
+### Функционал
+Есть регистрация пользователей, возможность восстановления пароля через электронную почту. Возможность публикации записей. Создана система подписок. Подключена генерация страницы пользователя и генерация ленты новых записей. 
+## Запуск проекта в dev-режиме
+=======
+### Технологии
+Проект реализован на Django. Регистрация пользователей - Generic Views. Чтение и запись БД - Django ORM. Пользовательский интерфейс - HTML, CSS. Проект покрыт тестами - Unittest, TDD. 
+### Запуск проекта в dev-режиме
+- Установите и активируйте виртуальное окружение
+- Установите зависимости из файла requirements.txt
+```
+pip install -r requirements.txt
+``` 
+- В папке с файлом manage.py выполните команду:
+```
+python manage.py runserver
+```
+### Автор
+Ilia-Pringless
