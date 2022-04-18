@@ -24,4 +24,4 @@ python3 api_yamdb/manage.py runserver
 ```
 
 ### Автор
-Ilia Iliukhin
+Ilia-Pringless
